@@ -3,7 +3,7 @@ dotenv.config()
 
 import express, { Application } from 'express'
 import cors from 'cors'
-
+import path from 'path'
 import './user'
 import './city'
 import { User } from './user'
@@ -32,12 +32,18 @@ class Server {
         this.dbConnection()
         this.middlewares()
         this.routes()
+
     }
 
     routes() {
         this.app.use(this.apiPaths.users, userRoutes)
         this.app.use(this.apiPaths.favorite, favoriteRoutes)
         this.app.use(this.apiPaths.auth, authRoutes)
+
+        this.app.use('*', (req, res) => {
+            res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+        })
+
     }
 
     middlewares() {
@@ -46,6 +52,7 @@ class Server {
         this.app.use(express.json())
 
         this.app.use(express.static('public'))
+
     }
 
     listen() {

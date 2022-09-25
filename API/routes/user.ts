@@ -29,9 +29,9 @@ router.post(
         check('first_name', 'name is missing').notEmpty(),
         check('first_name', 'first name should be longer than 2 characters and less than 60').isLength({ min: 2, max: 60 }),
         check('last_name', 'last name is missing').notEmpty(),
-        check('first_name', 'last name should be longer than 2 characters and less than 60').isLength({ min: 2, max: 60 }),
+        check('last_name', 'last name should be longer than 2 characters and less than 60').isLength({ min: 2, max: 60 }),
         check('password', 'password is missing').notEmpty(),
-        check('first_name', 'last name should be longer than 5 characters and less than 20').isLength({ min: 5, max: 20 }),
+        check('password', 'last name should be longer than 5 characters and less than 20').isLength({ min: 5, max: 20 }),
         fieldValidator,
     ],
     createUser)

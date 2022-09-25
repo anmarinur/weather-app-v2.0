@@ -3,18 +3,18 @@ import { tokenGenerator } from "../helpers/jwt-generator";
 
 export const login = async (req: Request, res: Response) => {
 
-    const user = req.user
+    const {dataValues} = req.user
     
     try {
 
-        const token = await tokenGenerator(user.id, user.name)
-
+        const token = await tokenGenerator(dataValues.user_id, dataValues.first_name)
+        
         res.json({
             ok: true,
             msg: 'succesfully logged in',
-            uid: user.user_id,
-            name: user.first_name,
-            token
+            uid: dataValues.user_id,
+            name: dataValues.first_name,
+            token,
         })
 
     } catch (error) {
@@ -25,6 +25,7 @@ export const login = async (req: Request, res: Response) => {
             msg: 'please talk to the admin'
         })
     }
+
 }
 
 export const renewToken = async (req: Request, res: Response) => {

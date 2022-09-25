@@ -18,8 +18,7 @@ export const jwtValidator = async (req: Request, res: Response, next: NextFuncti
 
     try {
         //@ts-ignore
-        const { id, name } = jwt.verify(token, process.env.SECRET || '')
-
+        const {id} = jwt.verify(token, process.env.SECRET || '')
         req.user = await User.findAll({where: { user_id: id}}) 
 
     } catch (error) {

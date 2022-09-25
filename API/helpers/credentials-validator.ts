@@ -6,7 +6,6 @@ import { User } from '../models/user';
 export const credentialsValidator = async (req: Request, res: Response, next: NextFunction) => {
 
     const { email, password } = req.body
-    console.log(email, password);
     
     //Verify if email exist
     const user = await User.findOne({ where: { email }})
@@ -25,6 +24,8 @@ export const credentialsValidator = async (req: Request, res: Response, next: Ne
             msg: "User or password is incorrect - wrong password"
         })
     }
+
+    req.user = user
     
     next()
 }

@@ -44,9 +44,7 @@ export const newFavorite = async (req: Request, res: Response) => {
 export const removeFavorite = async (req: Request, res: Response) => {
 
     const cityName = req.cityName
-
-    console.log(cityName);
-    
+  
 
     try {
 
